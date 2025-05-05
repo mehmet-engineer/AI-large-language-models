@@ -2,7 +2,8 @@ from Models.Gemini import GEMINI
 
 model = "gemini-2.0-flash"
 API_KEY = "API_KEY"
-gemini_model = GEMINI(model=model, api_key=API_KEY)
+temperature = 0.4
+gemini_model = GEMINI(model, API_KEY, temperature)
 
 # trial 1
 prompt = "what is ai?"
