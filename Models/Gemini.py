@@ -9,16 +9,27 @@ class GEMINI:
         self.model = model
         self.api_key = api_key
         self.temperature = temperature
+        self.config = types.GenerateContentConfig(temperature=self.temperature)
         self.client = genai.Client(api_key=api_key)
+        self.chat = self.client.chats.create(model=self.model)
+        
+    def chat_with_gemini(self, prompt: str) -> str:
+        try:
+            response = self.chat.send_message(prompt, config=self.config)
+        except Exception as e:
+            print(f"Error: {e}")
+            return None
+        
+        response = response.text
+
+        return response
 
     def generate_text_response(self, prompt: str) -> str:
         try:
             response = self.client.models.generate_content(
                 model=self.model,
                 contents=prompt,
-                config=types.GenerateContentConfig(
-                    temperature=self.temperature
-                )
+                config=self.config
             )
         except Exception as e:
             print(f"Error: {e}")

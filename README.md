@@ -1,6 +1,7 @@
 # AI Large Language Models with Python API
 
 This project has web cloud based API's of many popular large language models and example usages. API KEY required for all models.
+Only Google Gemini is free to use.
 
 ## Available Models:
 
